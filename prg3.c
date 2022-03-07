@@ -1,7 +1,7 @@
 #include<stdio.h>
 void main()
 {
-int data[7],i,c,c1,c2,c3,rec[7];
+int data[10],i,c,c1,c2,c3,rec[10];
 printf("Enter a message:\n");
 scanf("%d%d%d%d",&data[0],&data[1],&data[2],&data[4]);
 data[5]=data[0]^data[1]^data[4];
@@ -10,7 +10,7 @@ data[3]=data[2]^data[1]^data[0];
 printf("Encoded bits are:");
 for(i=0;i<7;i++)
 {
-printf("%d",data[i]);
+printf("%d\t",data[i]);
 }
 printf("Enter encoded bits:");
 for(i=0;i<7;i++)
@@ -27,7 +27,7 @@ printf("There is no error");
 }
 else
 {
-printf("Error in position %d/d",c);
+printf("\n Error in position %d\n",c);
 }
 }
 
