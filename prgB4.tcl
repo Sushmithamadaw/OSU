@@ -77,15 +77,15 @@ $ns at 1.9 "$n1 join-group $rcvr1 $group"
 
 set rcvr2 [new Agent/LossMonitor];
 $ns attach-agent $n2 $rcvr2
-$ns at 1.55 "$n2 join-group $rcvr2 $group"
+$ns at 1.12 "$n2 join-group $rcvr2 $group"
 
 set rcvr3 [new Agent/LossMonitor];
 $ns attach-agent $n3 $rcvr3
-$ns at 2.30 "$n3 join-group $rcvr3 $group"
+$ns at 1.15 "$n3 join-group $rcvr3 $group"
 
 set rcvr4 [new Agent/LossMonitor];
 $ns attach-agent $n4 $rcvr4
-$ns at 3.03 "$n4 join-group $rcvr4 $group"
+$ns at 1.20 "$n4 join-group $rcvr4 $group"
 
 set rcvr4 [new Agent/LossMonitor];
 $ns attach-agent $n4 $rcvr4
@@ -96,11 +96,11 @@ $ns attach-agent $n3 $rcvr3
 $ns at 4.03 "$n3 leave-group $rcvr3 $group"
 
 set rcvr2 [new Agent/LossMonitor];
-$ns attach-agent $n3 $rcvr3
+$ns attach-agent $n2 $rcvr2 
 $ns at 4.30 "$n2 leave-group $rcvr2 $group"
 
 set rcvr1 [new Agent/LossMonitor];
-$ns attach-agent $n3 $rcvr3
+$ns attach-agent $n1 $rcvr1
 $ns at 5.3 "$n1 leave-group $rcvr1 $group"
 
 
