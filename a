@@ -1,0 +1,77 @@
+
+//Largest of 5 number
+var n;
+a=prompt("Enter First numbers");
+b=prompt("Enter Second numbers");
+c=prompt("Enter Third numbers");
+d=prompt("Enter Fourth numbers");
+e=prompt("Enter Fifth numbers");
+lar=a;
+if(b>lar)
+lar=b;
+if(c>lar)
+lar=c;
+if(d>lar)
+lar=d;
+if(e>lar)
+lar=e;
+alert("The Largest Number is:" + lar)
+
+
+
+
+<title>Document</title>
+    <script >
+        function firstN()
+        {
+        var n;
+n=parseInt(prompt("Enter n value"));
+//document.write("First " + n + "Numbers <br/>");
+msg="First " + n + "Numbers \n"
+for(i=1;i<=n;i++){
+   // document.write(i+"<br/>");
+msg+=i + "\n";
+}
+alert(msg);
+        }
+    </script>
+    
+   
+</head>
+<body>
+    <h onclick="firstN();">CLICK</h>
+</body>
+</html>
+
+
+
+
+var n;
+n=prompt("Enter a Number")
+document.write("The first " + n + " Numbers are<br/>");
+for(i=1;i<=n;i++){
+    document.write(i+ "<br/>")
+}
+
+
+var n,n1,n2;
+n1=parseInt(prompt("Enter The First number"));
+n2=parseInt(prompt("Enter The Second number"));
+esum=osum=0;
+eno=ono="";
+for(i=n1;i<=n2;i++)
+{
+if(n%2==0) {
+    esum+=i;
+    eno+=i+"";
+}
+else{
+
+     osum+=i;
+    ono+=i+"";
+}
+}
+    
+    document.write("<br/>Even Numbers " + eno + "=" + esum);
+
+document.write("<br/>Odd Number is  " + onu + "=" + osum);
