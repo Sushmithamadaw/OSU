@@ -212,3 +212,85 @@ mysql> SELECT * FROM BORROW;
 +------------+---------+---------------+
 7 rows in set (0.00 sec)
 
+1)
+
+// 1 METHOD  mysql>  SELECT BRANCH_NAME,NAME FROM STUDENT,BRANCH WHERE STUDENT.SEM='2' AND BRANCH.BRANCH_NAME='MCA';
++-------------+-------+
+| BRANCH_NAME | NAME  |
++-------------+-------+
+| MCA         | SONU  |
+| MCA         | THANU |
++-------------+-------+
+
+ // USE 2 METHOD  SELECT * FROM STUDENT WHERE SEM='2' AND BRANCH_ID IN (SELECT BRANCH_ID FROM BRANCH WHERE BRANCH.BRANCH_NAME='MCA');
++------------+------+---------+-----------+------+
+| USN        | NAME | ADDRESS | BRANCH_ID | SEM  |
++------------+------+---------+-----------+------+
+| 4VP21MC021 | SONI | KABA    | B1        | 2    |
++------------+------+---------+-----------+------+
+1 row in set (0.00 sec)
+
+
+2)
+
+mysql> SELECT * FROM STUDENT WHERE USN NOT IN(SELECT USN FROM BORROW);
++------------+-------+-----------+-----------+------+
+| USN        | NAME  | ADDRESS   | BRANCH_ID | SEM  |
++------------+-------+-----------+-----------+------+
+| 4VP21MC047 | THANU | MANGALORE | B5        | 2    |
++------------+-------+-----------+-----------+------+
+1 row in set (0.00 sec)
+
+mysql> SELECT * FROM BORROW;
++------------+---------+---------------+
+| USN        | BOOK_ID | BORROWED_DATE |
++------------+---------+---------------+
+| 4VP21MC023 | BK6     | 2021-01-01    |
+| 4VP21MC050 | BK3     | 2021-02-04    |
+| 4VP21MC044 | BK2     | 2022-05-23    |
+| 4VP21MC028 | BK2     | 2019-03-14    |
+| 4VP21MC039 | BK4     | 2017-09-11    |
+| 4VP21MC050 | BK5     | 2020-10-12    |
+| 4VP21MC044 | BK1     | 2021-12-02    |
+
+
+7)
+mysql> SELECT BOOK_NAME FROM BOOK ORDER BY BOOK_NAME DESC;
++-----------------+
+| BOOK_NAME       |
++-----------------+
+| THERMO DYNAMICS |
+| RMI             |
+| DBMS            |
+| DATA STRUCTURE  |
+| ALGORITHMS      |
+| AI              |
++-----------------+
+
+mysql> STUDENT.USN,STUDENT.NAME,BRANCH.BRANCH_NAME,BOOK.BOOK_NAME,AUTHOR.AUTHOR_NAME,BORROW.BORROWED_DATE FROM STUDENT,BRANCH,BOOK,AUTHOR,BORROW WHERE STUDENT.BRANCH_ID=BRANCH.BRANCH_ID AND BRANCH.BRANCH_ID=BOOK.BRANCH_ID AND BOOK.AUTHOR_ID=AUTHOR.AUTHOR_ID AND STUDENT.USN=BORROW.USN AND STUDENT.SEM='2' AND BRANCH.BRANCH_NAME='MCA';
++------------+------+-------------+------------+-----------------+---------------+
+| USN        | NAME | BRANCH_NAME | BOOK_NAME  | AUTHOR_NAME     | BORROWED_DATE |
++------------+------+-------------+------------+-----------------+---------------+
+| 4VP21MC021 | SONI | MCA         | DBMS       | RAMEZ ELMASRI   | 2021-12-02    |
+| 4VP21MC021 | SONI | MCA         | ALGORITHMS | DEEPAK KEHAMANI | 2021-12-02    |
++------------+------+-------------+------------+-----------------+---------------+
+2 rows in set (0.00 sec)
+
+
+
+
+
+CREATE TABLE TEAM(TID VARCHAR(20)PRIMARY KEY,TNAME VARCHAR(25)NOT NULL,COACH VARCHAR(25),CAPTAIN_ID VARCHAR(20)FOREIGN KEY,NOT NULL,CITY VARCHAR(20));
+
+CREATE TABLE TAEM MODIFY FOREIGN KEY(CAPTAIN_ID)REFERENCES PLAYER(PID);
+
+
+CREATE TABLE PLAYER(PID VARCHAR(20)PRIMARY KEY,PNAME VARCHAR(25)NOT NULL,AGE INT(4),TID VARCHAR(20),FOREIGN KEY(TID) REFERENCES TEAM(TID));
+
+CREATE TABLE STADIUM(SID VARCHAR(20)PRIMARY KEY,SNAME VARCHAR(25)NOT NULL,PINCODE INT(10),CITY VARCHAR(20),AREA VARCHAR(25));
+
+CREATE TABLE MATCHES(MID VARCHAR(20)PRIMARY KEY,MDATE DATE,TIME TIME,SID VARCHAR(20),TEAM1_ID VARCHAR(20),TEAM2_ID VARCHAR(20),WINNINGTEAM_ID VARCHAR(20),MAN_OF_THE_MATCH VARCHAR(25),FOREIGN KEY (SID)REFERENCES STADIUM(SID),FOREIGN KEY(TEAM1_ID)REFERENCES TEAM(TID),FOREIGN KEY(TEAM2_ID)REFERENCES TEAM(TID),FOREIGN KEY(WINNINGTEAM_ID)REFERENCES TEAM TABLE TAEM ADD FOREIGN KEY(MAN_OF_THE_MATCH)REFERENCES PLAYER(PID);
+
+A TABLE PLAYER_PHONE(PID VARCHAR(20)PRIMARY KEY,PHONE INT);
+ALTER TABLE TAEM ADD FOREIGN KEY(MAN_OF_THE_MATCH)REFERENCES PLAYER(PID);
+
